@@ -1,0 +1,43 @@
+##
+## Cloud Inventory File
+##
+roles:
+#
+# Define each role (control, compute, network, monitoring, storage) and assign the target nodes
+#
+  control:
+    - LAB-HNS-01
+  compute:
+    - LAB-HNS-01
+    - LAB-HNS-02
+  network:
+    - LAB-HNS-01
+    - LAB-HNS-02
+  monitoring:
+    - LAB-HNS-01
+    - LAB-HNS-02
+  storage:
+    - LAB-HNS-01
+    - LAB-HNS-02
+
+targets:
+  common:
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: whitestack
+    ansible_become_pass: whitestack
+    ansible_become: yes
+#
+# Define the IP Addresses for each node
+#
+  LAB-HNS-01:
+    ansible_host: "10.100.3.31"
+    network_interface: enx002432603a6f
+    neutron_sriov_physnet_mappings:
+      physnet2: eno1
+
+  LAB-HNS-02:
+    ansible_host: "10.100.3.32"
+    network_interface: enx002432603a52
+    neutron_sriov_physnet_mappings:
+      physnet2: eno1
+      physnet3: eno2
